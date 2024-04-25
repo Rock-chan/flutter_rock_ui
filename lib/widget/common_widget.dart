@@ -34,3 +34,45 @@ Container buildVerticalLine(double height,
     decoration: decoration,
   );
 }
+
+/// 到底了
+Widget listLoadAll(
+    {String content = '到底了',
+    double top = 0,
+    double bottom = 0,
+    Color? bgColor,
+    Color? textColor,
+    Color? lineColor,
+    double? lineWidth = 50,
+    bool safeAreaTop = true,
+    bool safeAreaBottom = true}) {
+  return SafeArea(
+    top: safeAreaTop,
+    bottom: safeAreaBottom,
+    child: Container(
+      width: double.infinity,
+      alignment: Alignment.center,
+      color: bgColor,
+      child: Padding(
+        padding: EdgeInsets.only(top: top, bottom: bottom),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            buildHorizontalLine(
+                width: lineWidth ?? 50,
+                margin: const EdgeInsets.only(right: 24),
+                color: lineColor ?? Colors.black.withOpacity(0.1)),
+            Text(
+              content,
+              style: TextStyle(color: textColor ?? Colors.black.withOpacity(0.3), fontSize: 12),
+            ),
+            buildHorizontalLine(
+                width: lineWidth ?? 50,
+                margin: const EdgeInsets.only(left: 24),
+                color: lineColor ?? Colors.black.withOpacity(0.1)),
+          ],
+        ),
+      ),
+    ),
+  );
+}

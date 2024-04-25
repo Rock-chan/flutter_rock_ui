@@ -51,6 +51,8 @@ dependencies:
   assets_audio_player: ^3.1.1
   # 震动
   vibration: ^1.7.5
+  # 列表的加载更多插件
+  loading_more_list: 4.1.2
 
 dev_dependencies:
   flutter_test:
@@ -64,8 +66,8 @@ dev_dependencies:
 flutter:
 
   # To add assets to your package, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
   #   - images/a_dot_ham.jpeg
   #
   # For details regarding assets in packages, see
