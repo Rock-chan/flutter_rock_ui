@@ -3,6 +3,7 @@ import 'package:example/page/countdown_widget_page.dart';
 import 'package:example/page/device_info_page.dart';
 import 'package:example/page/oss_example_page.dart';
 import 'package:example/page/photo_view_page.dart';
+import 'package:example/page/smart_refresh_list_page.dart';
 import 'package:example/widget/item_widget.dart';
 import 'package:flutter/material.dart';
 
@@ -50,6 +51,9 @@ class Home extends StatelessWidget {
           }),
           buildItem("device info", onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => const DeviceInfoPage()));
+          }),
+          buildItem("SmartRefreshList", onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const SmartRefreshListPage()));
           }),
         ],
       ),
