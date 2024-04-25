@@ -1,10 +1,10 @@
 import 'package:example/page/activity_dialog_page.dart';
+import 'package:example/page/photo_view_page.dart';
 import 'package:example/widget/item_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:get/route_manager.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: Home(),
     );
   }
@@ -36,6 +36,9 @@ class Home extends StatelessWidget {
               // Navigator.push(MaterialPageRoute(builder: (context) => const ActivityDialogPage()));
             },
           ),
+          buildItem('PhotoView', onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => PhotoViewPage()));
+          }),
         ],
       ),
     );
