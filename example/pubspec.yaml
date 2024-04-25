@@ -40,9 +40,17 @@ dependencies:
     path: ../
 
   # 网络请求
-  dio: ^5.4.0
+#  dio: ^5.4.0
 
   image_picker: ^1.0.7
+
+  flip_card: ^0.7.0
+
+  #二维码生成
+  qr_flutter: ^4.1.0
+
+  #高性能的状态管理、智能的依赖注入和便捷的路由管理
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:
@@ -67,8 +75,8 @@ flutter:
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
+  assets:
+    - assets/images/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
