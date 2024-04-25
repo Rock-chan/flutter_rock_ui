@@ -217,7 +217,6 @@ class AndroidDeviceInformation extends DeviceInfoStrategy {
 
   @override
   String getSerialNumber() {
-    androidDeviceInfo!.fingerprint ?? '';
-    throw UnimplementedError();
+    return androidDeviceInfo!.fingerprint;
   }
 }
