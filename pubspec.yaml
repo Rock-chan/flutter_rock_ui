@@ -47,6 +47,10 @@ dependencies:
   uuid: ^3.0.7
   # 屏幕常亮
   wakelock: ^0.6.2
+  # 静态音效播放
+  assets_audio_player: ^3.1.1
+  # 震动
+  vibration: ^1.7.5
 
 dev_dependencies:
   flutter_test:
