@@ -1,4 +1,5 @@
 import 'package:example/page/activity_dialog_page.dart';
+import 'package:example/page/countdown_widget_page.dart';
 import 'package:example/page/photo_view_page.dart';
 import 'package:example/widget/item_widget.dart';
 import 'package:flutter/material.dart';
@@ -38,6 +39,9 @@ class Home extends StatelessWidget {
           ),
           buildItem('PhotoView', onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) => PhotoViewPage()));
+          }),
+          buildItem("Countdown Widget", onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const CountdownWidgetPage()));
           }),
         ],
       ),
