@@ -37,6 +37,7 @@ class _DeviceInfoTestState extends State<DeviceInfoTest> {
 
   getDevicePlatform() async {
     strategy = await deviceInfo.getPlatform();
+    setState(() {});
   }
 
   @override
@@ -45,20 +46,6 @@ class _DeviceInfoTestState extends State<DeviceInfoTest> {
       appBar: AppBar(
         title: const Text("Device Info Demo"),
       ),
-      // body: Column(
-      //   children: [
-      //     Text("name: ${strategy?.getName()}"),
-      //     Text("systemName: ${strategy?.getSystemName()}"),
-      //     Text("systemVersion: ${strategy?.getSystemVersion()}"),
-      //     Text("model: ${strategy?.getModel()}"),
-      //     Text("localizedModel: ${strategy?.getLocalizedModel()}"),
-      //     Text("IdentifierForVendor: ${strategy?.getIdentifierForVendor()}"),
-      //     Text("isPhysicalDevice: ${strategy?.isPhysicalDevice()}"),
-      //     Text("utsname.sysname: ${strategy?.getUtsNameSysName()}"),
-      //     Text("utsname.nodename: ${strategy?.getUtsNameNodeName()}"),
-      //     Text("utsNameMachine: ${strategy?.getUtsNameMachine()}"),
-      //   ],
-      // ),
       body: SingleChildScrollView(
         child: Column(
           children: [

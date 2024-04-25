@@ -1,5 +1,6 @@
 import 'package:example/page/activity_dialog_page.dart';
 import 'package:example/page/countdown_widget_page.dart';
+import 'package:example/page/device_info_page.dart';
 import 'package:example/page/oss_example_page.dart';
 import 'package:example/page/photo_view_page.dart';
 import 'package:example/widget/item_widget.dart';
@@ -35,7 +36,6 @@ class Home extends StatelessWidget {
             "Dialog",
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) => const ActivityDialogPage()));
-              // Navigator.push(MaterialPageRoute(builder: (context) => const ActivityDialogPage()));
             },
           ),
           buildItem('PhotoView', onPressed: () {
@@ -47,6 +47,9 @@ class Home extends StatelessWidget {
           buildItem("Oss Example", onPressed: () {
             Navigator.push(
                 context, MaterialPageRoute(builder: (context) => const OssExamplePage(title: "Oss Example")));
+          }),
+          buildItem("device info", onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => const DeviceInfoPage()));
           }),
         ],
       ),
