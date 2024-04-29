@@ -78,24 +78,25 @@ Widget listLoadAll(
   );
 }
 
-AppBar customArrowAppBar(
-  String title, {
-  Key? key,
-  Color textColor = const Color(0xff1f1f39),
-  Color iconColor = Colors.black,
-  Color backgroundColor = Colors.white,
-  FontWeight fontWeight = FontWeight.w500,
-  PreferredSizeWidget? bottomWidget,
-  VoidCallback? onPressed,
-  List<Widget>? actions,
-  Widget? titleWidget,
-  double? backPaddingLeft,
-  double? leadingWidth,
-  double? titleSpacing,
-  Widget? leadingWidget,
-  SystemUiOverlayStyle? systemOverlayStyle,
-  bool centerTitle = true,
-}) {
+AppBar customArrowAppBar(String title,
+    {Key? key,
+    Color textColor = const Color(0xff1f1f39),
+    Color iconColor = Colors.black,
+    Color backgroundColor = Colors.white,
+    FontWeight fontWeight = FontWeight.w500,
+    PreferredSizeWidget? bottomWidget,
+    VoidCallback? onPressed,
+    List<Widget>? actions,
+    Widget? titleWidget,
+    double? backPaddingLeft,
+    double? leadingWidth,
+    double? titleSpacing,
+    Widget? leadingWidget,
+    SystemUiOverlayStyle? systemOverlayStyle,
+    bool centerTitle = true,
+
+    /// 是否隐藏返回按钮
+    bool hideBack = false}) {
   return AppBar(
     key: key,
     centerTitle: centerTitle,
@@ -104,7 +105,17 @@ AppBar customArrowAppBar(
     leadingWidth: leadingWidth,
     backgroundColor: backgroundColor,
     titleSpacing: titleSpacing,
-    leading: leadingWidget,
+    leading: leadingWidget ??
+        (hideBack
+            ? null
+            : GestureDetector(
+                behavior: HitTestBehavior.opaque,
+                onTap: onPressed,
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Icon(Icons.arrow_back_ios_new_outlined, color: iconColor),
+                ),
+              )),
     actions: actions,
     bottom: bottomWidget,
     systemOverlayStyle: systemOverlayStyle,
