@@ -9,16 +9,15 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_rock_ui/widget_flutter_binding/transition_builder_widget.dart';
 import 'package:flutter_rock_ui/widget_flutter_binding/ui_blueprints_rectangle.dart';
 
 import 'info.dart';
 import 'print.dart';
+import 'transition_builder_widget.dart';
 
 const tag = "【_Fx】";
 
 BlueprintsRectangle _uiBlueprints = const BlueprintsRectangle(0, 0);
-
 bool _enableLog = false;
 
 ///还原为设备原始实际值,使用系统像素密度
@@ -72,11 +71,13 @@ TransitionBuilder FxTransitionBuilder({TransitionBuilder? builder}) {
 }
 
 class FxWidgetsFlutterBinding extends WidgetsFlutterBinding {
+  static FxWidgetsFlutterBinding instance = FxWidgetsFlutterBinding();
+
   static WidgetsBinding ensureInitialized({required BlueprintsRectangle uiBlueprints, bool enableLog = false}) {
     assert(uiBlueprints.width > 0);
     _enableLog = enableLog;
     _uiBlueprints = uiBlueprints;
-    FxWidgetsFlutterBinding();
+    instance = FxWidgetsFlutterBinding();
     return WidgetsBinding.instance;
   }
 
@@ -98,11 +99,34 @@ class FxWidgetsFlutterBinding extends WidgetsFlutterBinding {
     );
   }
 
+  void changeViewConfiguration(bool nonAdapter) {
+    ViewConfiguration? newConfiguration;
+    if (!nonAdapter) {
+      newConfiguration = ViewConfiguration(
+        size: window.physicalSize / adapterDevicePixelRatio,
+        devicePixelRatio: adapterDevicePixelRatio,
+      );
+    } else {
+      newConfiguration = super.createViewConfiguration();
+    }
+    RendererBinding.instance.renderView.configuration = newConfiguration;
+    Timer.run(() {
+      try {
+        RenderView renderView = RendererBinding.instance.renderView;
+        renderView.prepareInitialFrame();
+        ui.window.onPointerDataPacket = FxWidgetsFlutterBinding.instance.handlePointerDataPacket;
+      } catch (e, s) {
+        debugPrint(e.toString());
+        debugPrint(s.toString());
+      }
+    });
+  }
+
   ///override GestureBinding
   @override
   void initInstances() {
     super.initInstances();
-    ui.window.onPointerDataPacket = _handlePointerDataPacket;
+    ui.window.onPointerDataPacket = handlePointerDataPacket;
   }
 
   @override
@@ -111,25 +135,25 @@ class FxWidgetsFlutterBinding extends WidgetsFlutterBinding {
     _flushPointerEventQueue();
   }
 
-  final Queue<PointerEvent> _pendingPointerEvents = Queue<PointerEvent>();
+  final Queue<PointerEvent> pendingPointerEvents = Queue<PointerEvent>();
 
-  void _handlePointerDataPacket(ui.PointerDataPacket packet) {
-    _pendingPointerEvents.addAll(PointerEventConverter.expand(packet.data, (_) => adapterDevicePixelRatio));
+  void handlePointerDataPacket(ui.PointerDataPacket packet) {
+    pendingPointerEvents.addAll(PointerEventConverter.expand(packet.data, (_) => adapterDevicePixelRatio));
     if (!locked) _flushPointerEventQueue();
   }
 
   @override
   void cancelPointer(int pointer) {
-    if (_pendingPointerEvents.isEmpty && !locked) {
+    if (pendingPointerEvents.isEmpty && !locked) {
       scheduleMicrotask(_flushPointerEventQueue);
     }
-    _pendingPointerEvents.addFirst(PointerCancelEvent(pointer: pointer));
+    pendingPointerEvents.addFirst(PointerCancelEvent(pointer: pointer));
   }
 
   void _flushPointerEventQueue() {
     assert(!locked);
-    while (_pendingPointerEvents.isNotEmpty) {
-      handlePointerEvent(_pendingPointerEvents.removeFirst());
+    while (pendingPointerEvents.isNotEmpty) {
+      handlePointerEvent(pendingPointerEvents.removeFirst());
     }
   }
 
