@@ -85,13 +85,14 @@ class FxWidgetsFlutterBinding extends WidgetsFlutterBinding {
   @protected
   void scheduleAttachRootWidget(Widget rootWidget) {
     Timer.run(() {
-      attachRootWidget(_RoorRenderObjectWidget(rootWidget));
+      // attachRootWidget(_RoorRenderObjectWidget(rootWidget));
+      attachRootWidget(rootWidget);
     });
   }
 
   ///override RendererBinding
   @override
-  ViewConfiguration createViewConfiguration() {
+  ViewConfiguration createViewConfigurationFor(RenderView renderView) {
     //super.createViewConfiguration();
     return ViewConfiguration(
       size: window.physicalSize / adapterDevicePixelRatio,
@@ -100,6 +101,7 @@ class FxWidgetsFlutterBinding extends WidgetsFlutterBinding {
   }
 
   void changeViewConfiguration(bool nonAdapter) {
+    RenderView renderView = RendererBinding.instance.renderView;
     ViewConfiguration? newConfiguration;
     if (!nonAdapter) {
       newConfiguration = ViewConfiguration(
@@ -107,18 +109,13 @@ class FxWidgetsFlutterBinding extends WidgetsFlutterBinding {
         devicePixelRatio: adapterDevicePixelRatio,
       );
     } else {
-      newConfiguration = super.createViewConfiguration();
+      newConfiguration = super.createViewConfigurationFor(renderView);
     }
-    RendererBinding.instance.renderView.configuration = newConfiguration;
+    renderView.configuration = newConfiguration;
     Timer.run(() {
-      try {
-        RenderView renderView = RendererBinding.instance.renderView;
-        renderView.prepareInitialFrame();
-        ui.window.onPointerDataPacket = FxWidgetsFlutterBinding.instance.handlePointerDataPacket;
-      } catch (e, s) {
-        debugPrint(e.toString());
-        debugPrint(s.toString());
-      }
+      // RenderView renderView = RendererBinding.instance.renderView;
+      renderView.prepareInitialFrame();
+      ui.window.onPointerDataPacket = FxWidgetsFlutterBinding.instance.handlePointerDataPacket;
     });
   }
 
