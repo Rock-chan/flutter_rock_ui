@@ -11,15 +11,15 @@ import 'package:flutter_rock_ui/utils/json_utils.dart';
 import 'package:flutter_rock_ui/utils/time_utils.dart';
 
 class Request {
-  Map<Env, String>? baseUrlMap;
+  static Map<Env, String>? _baseUrlMap;
 
   static Env? _env;
 
-  static String? _baseUrl;
+  String? _baseUrl;
 
-  static init(Env env, String baseUrl) {
+  static init(Map<Env, String> map, Env env) {
+    _baseUrlMap = map;
     _env = env;
-    _baseUrl = baseUrl;
   }
 
   /// 单例模式
@@ -43,8 +43,7 @@ class Request {
 
   /// 初始化
   Request._internal() {
-    assert(_env != null);
-    assert(_baseUrl != null);
+    assert(_baseUrlMap != null);
     switch (_env!) {
       case Env.dev:
         enablePrintLog = true;
@@ -56,6 +55,7 @@ class Request {
         enablePrintLog = true;
         break;
     }
+    _baseUrl = _baseUrlMap![_env];
 
     /// 初始化基本选项
     BaseOptions options = BaseOptions(
