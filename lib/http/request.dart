@@ -10,7 +10,7 @@ import 'package:flutter_rock_ui/http/response_entity.dart';
 import 'package:flutter_rock_ui/utils/json_utils.dart';
 import 'package:flutter_rock_ui/utils/time_utils.dart';
 
-class Request {
+class CustomRequest {
   static Map<Env, String>? _baseUrlMap;
 
   static Env? _env;
@@ -23,13 +23,13 @@ class Request {
   }
 
   /// 单例模式
-  static Request? _instance;
+  static CustomRequest? _instance;
 
   /// 工厂函数：执行初始化
-  factory Request() => _instance ?? Request._internal();
+  factory CustomRequest() => _instance ?? CustomRequest._internal();
 
   /// 获取实例对象时，如果有则返回，没有则初始化
-  static Request? get instance => _instance ?? Request._internal();
+  static CustomRequest? get instance => _instance ?? CustomRequest._internal();
 
   /// dio实例
   static Dio? _dio;
@@ -42,7 +42,7 @@ class Request {
   ResOptions? _resOptions;
 
   /// 初始化
-  Request._internal() {
+  CustomRequest._internal() {
     assert(_baseUrlMap != null);
     switch (_env!) {
       case Env.dev:
