@@ -112,7 +112,7 @@ class CustomLogInterceptor extends Interceptor {
       response.headers.forEach((key, v) => _printKV(' $key', v.join('\r\n\t')));
     }
     logPrint('Response Text:');
-    ResponseEntity responseEntity = ResponseEntity.fromJson(jsonDecode(response.data.toString()));
+    ResponseEntity responseEntity = ResponseEntity.fromJson(response.data);
     logPrint('\tcode: ${responseEntity.code}');
     logPrint('\tmessage: ${responseEntity.message}');
     logPrint('\tdata: ${responseEntity.data}');
