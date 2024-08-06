@@ -85,7 +85,7 @@ class CustomLogInterceptor extends Interceptor {
   }
 
   @override
-  void onError(DioError err, ErrorInterceptorHandler handler) async {
+  void onError(DioException err, ErrorInterceptorHandler handler) async {
     if (error) {
       logPrint('*** DioError ***:');
       logPrint('uri: ${err.requestOptions.uri}');
@@ -93,7 +93,7 @@ class CustomLogInterceptor extends Interceptor {
       if (err.response != null) {
         _printResponse(err.response!);
       }
-      if (err.response?.data['code'] == 500) {
+      if (err.response?.statusCode == 500) {
         "系统错误".toast();
       } else {
         err.response?.data['message'].toString().toast();
