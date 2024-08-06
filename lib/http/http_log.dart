@@ -92,7 +92,7 @@ class CustomLogInterceptor extends Interceptor {
       if (err.response != null) {
         _printResponse(err.response!);
       }
-      err.response?.data.toast();
+      err.response?.data['message'].toast();
       logPrint('');
     }
 
