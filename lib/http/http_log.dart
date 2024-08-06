@@ -1,4 +1,5 @@
 import 'package:dio/dio.dart';
+import 'package:flutter_rock_ui/extensions/app_extensions.dart';
 import 'package:flutter_rock_ui/http/response_entity.dart';
 
 /// [CustomLogInterceptor] is used to print logs during network requests.
@@ -92,7 +93,7 @@ class CustomLogInterceptor extends Interceptor {
       if (err.response != null) {
         _printResponse(err.response!);
       }
-      err.response?.data['message'].toast();
+      err.response?.data['message'].toString().toast();
       logPrint('');
     }
 
