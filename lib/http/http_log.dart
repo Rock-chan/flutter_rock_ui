@@ -93,7 +93,11 @@ class CustomLogInterceptor extends Interceptor {
       if (err.response != null) {
         _printResponse(err.response!);
       }
-      err.response?.data['message'].toString().toast();
+      if (err.response?.data['code'] == 500) {
+        "系统错误".toast();
+      } else {
+        err.response?.data['message'].toString().toast();
+      }
       logPrint('');
     }
 
