@@ -1,5 +1,3 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
 import 'package:flutter_rock_ui/http/response_entity.dart';
 
@@ -94,6 +92,7 @@ class CustomLogInterceptor extends Interceptor {
       if (err.response != null) {
         _printResponse(err.response!);
       }
+      err.response?.data.toast();
       logPrint('');
     }
 
