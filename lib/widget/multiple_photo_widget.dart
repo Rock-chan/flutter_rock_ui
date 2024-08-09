@@ -65,6 +65,8 @@ class MultiplePhotoWidget extends StatelessWidget {
                     child: const Icon(Icons.image_not_supported_outlined),
                   );
                 },
+                width: width,
+                height: height,
               )
             : Image.network(
                 imgList[index],
@@ -74,6 +76,8 @@ class MultiplePhotoWidget extends StatelessWidget {
                     child: const Icon(Icons.image_not_supported_outlined),
                   );
                 },
+                width: width,
+                height: height,
               ),
       ),
     );
