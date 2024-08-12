@@ -66,10 +66,11 @@ class OssUtils {
     String contentType = "application/octet-stream",
     MultipleUploadCallBack? multipleUploadCallBack,
   }) {
+    _multipleLocalPathList.clear();
+    _multipleUrls.clear();
     _uploadCount = 0;
     isMultipleUpload = true;
     _multipleLocalPathList = paths;
-    _multipleUrls.clear();
     for (String compressPath in paths) {
       File imgFile = File(compressPath);
       if (!imgFile.existsSync()) {
@@ -103,8 +104,6 @@ class OssUtils {
           return;
         }
       });
-      _multipleUrls.clear();
-      _multipleLocalPathList.clear();
     }
   }
 }
