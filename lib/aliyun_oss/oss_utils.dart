@@ -103,6 +103,8 @@ class OssUtils {
           return;
         }
       });
+      _multipleUrls.clear();
+      _multipleLocalPathList.clear();
     }
   }
 }
