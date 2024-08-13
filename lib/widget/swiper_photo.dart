@@ -3,15 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_rock_ui/widget/multiple_photo_widget.dart';
 
 class SwiperPhoto extends StatelessWidget {
-  const SwiperPhoto({super.key, required this.imgUrlList, this.isAssets = true});
+  const SwiperPhoto({super.key, required this.imgUrlList, this.isAssets = true, required this.height});
 
   final List<String> imgUrlList;
   final bool isAssets;
+  final double height;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 500,
+      height: height,
       child: Swiper(
         loop: false,
         itemCount: imgUrlList.length,
