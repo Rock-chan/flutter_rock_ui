@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fluttertoast/fluttertoast_web.dart';
 
 class ToastUtils {
   static void showToast(String msg, {ToastGravity? gravity = ToastGravity.CENTER}) {
@@ -9,5 +10,9 @@ class ToastUtils {
       backgroundColor: Colors.black.withOpacity(0.45),
       textColor: Colors.white,
     );
+  }
+
+  static void webShowToast(String msg, {String gravity = "center"}) {
+    FluttertoastWebPlugin().addHtmlToast(msg: "aaa", gravity: gravity);
   }
 }
