@@ -10,4 +10,7 @@ extension WidgetVisibleX on Widget {
 extension StringToast on String? {
   /// 显示toast
   void toast({ToastGravity? toastGravity = ToastGravity.CENTER}) => ToastUtils.showToast(this!, gravity: toastGravity);
+
+  /// web显示toast
+  void webToast({String gravity = "center"}) => ToastUtils.webShowToast(this!, gravity: gravity);
 }
