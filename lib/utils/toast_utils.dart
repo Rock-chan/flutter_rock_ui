@@ -11,8 +11,4 @@ class ToastUtils {
       textColor: Colors.white,
     );
   }
-
-  static void webShowToast(String msg, {String gravity = "center"}) {
-    FluttertoastWebPlugin().addHtmlToast(msg: "aaa", gravity: gravity);
-  }
 }
