@@ -95,8 +95,9 @@ class FxWidgetsFlutterBinding extends WidgetsFlutterBinding {
   ViewConfiguration createViewConfigurationFor(RenderView renderView) {
     //super.createViewConfiguration();
     return ViewConfiguration(
-      physicalConstraints: BoxConstraints(maxWidth: window.physicalSize.width, maxHeight: window.physicalSize.height),
-      logicalConstraints: BoxConstraints(maxWidth: window.physicalSize.width, maxHeight: window.physicalSize.height),
+      physicalConstraints: BoxConstraints(maxHeight: window.physicalSize.height, maxWidth: window.physicalSize.width),
+      logicalConstraints: BoxConstraints(maxHeight: window.physicalSize.height, maxWidth: window.physicalSize.width) /
+          adapterDevicePixelRatio,
       // size: window.physicalSize / adapterDevicePixelRatio,
       devicePixelRatio: adapterDevicePixelRatio,
     );
@@ -341,7 +342,7 @@ class Resampler {
 
       final PointerEventResampler resampler = _resamplers.putIfAbsent(
         event.device,
-        () => PointerEventResampler(),
+            () => PointerEventResampler(),
       );
       resampler.addEvent(event);
     } else {
@@ -360,8 +361,11 @@ class Resampler {
     // Initialize `_frameTime` if needed. This will be used for periodic
     // sampling when frame callbacks are not received.
     if (_frameTime == Duration.zero) {
-      _frameTime = Duration(milliseconds: clock.now().millisecondsSinceEpoch);
-      _frameTimeAge = clock.stopwatch()..start();
+      _frameTime = Duration(milliseconds: clock
+          .now()
+          .millisecondsSinceEpoch);
+      _frameTimeAge = clock.stopwatch()
+        ..start();
     }
 
     // Schedule periodic resampling if `_timer` is not already active.
