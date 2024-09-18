@@ -96,6 +96,7 @@ class FxWidgetsFlutterBinding extends WidgetsFlutterBinding {
     //super.createViewConfiguration();
     return ViewConfiguration(
       physicalConstraints: BoxConstraints(maxWidth: window.physicalSize.width, maxHeight: window.physicalSize.height),
+      logicalConstraints: BoxConstraints(maxWidth: window.physicalSize.width, maxHeight: window.physicalSize.height),
       // size: window.physicalSize / adapterDevicePixelRatio,
       devicePixelRatio: adapterDevicePixelRatio,
     );
