@@ -95,7 +95,8 @@ class FxWidgetsFlutterBinding extends WidgetsFlutterBinding {
   ViewConfiguration createViewConfigurationFor(RenderView renderView) {
     //super.createViewConfiguration();
     return ViewConfiguration(
-      size: window.physicalSize / adapterDevicePixelRatio,
+      physicalConstraints: BoxConstraints(maxWidth: window.physicalSize.width, maxHeight: window.physicalSize.height),
+      // size: window.physicalSize / adapterDevicePixelRatio,
       devicePixelRatio: adapterDevicePixelRatio,
     );
   }
@@ -105,7 +106,8 @@ class FxWidgetsFlutterBinding extends WidgetsFlutterBinding {
     ViewConfiguration? newConfiguration;
     if (!nonAdapter) {
       newConfiguration = ViewConfiguration(
-        size: window.physicalSize / adapterDevicePixelRatio,
+        physicalConstraints: BoxConstraints(maxWidth: window.physicalSize.width, maxHeight: window.physicalSize.height),
+        // size: window.physicalSize / adapterDevicePixelRatio,
         devicePixelRatio: adapterDevicePixelRatio,
       );
     } else {
