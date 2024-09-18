@@ -16,7 +16,7 @@ dependencies:
   # 保存图片
   image_gallery_saver: ^2.0.3
   # 权限检测
-  permission_handler: ^10.2.0
+  permission_handler: ^10.4.5
   # 轮播图
   card_swiper: ^3.0.1
   # toast
