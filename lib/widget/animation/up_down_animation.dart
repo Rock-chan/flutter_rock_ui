@@ -9,6 +9,9 @@ class UpDownAnimation extends StatefulWidget {
     this.endTween = 15.0,
     this.duration = const Duration(milliseconds: 700),
     this.startDuration = Duration.zero,
+    this.shouldStart = true,
+    this.reverse = true,
+    this.repeat = true,
   });
 
   final Widget child;
@@ -16,6 +19,9 @@ class UpDownAnimation extends StatefulWidget {
   final double endTween;
   final Duration duration;
   final Duration startDuration;
+  final bool shouldStart;
+  final bool reverse;
+  final bool repeat;
 
   @override
   State<UpDownAnimation> createState() => _UpDownAnimationState();
@@ -37,9 +43,21 @@ class _UpDownAnimationState extends State<UpDownAnimation> with SingleTickerProv
       curve: Curves.easeInOut,
     ));
 
-    Future.delayed(widget.startDuration, () {
-      _controller!.repeat(reverse: true);
-    });
+    if (widget.shouldStart) {
+      if (widget.repeat) {
+        Future.delayed(widget.startDuration, () {
+          if (_controller != null) {
+            _controller!.repeat(reverse: widget.reverse);
+          }
+        });
+        return;
+      }
+      Future.delayed(widget.startDuration, () {
+        if (_controller != null) {
+          _controller!.forward();
+        }
+      });
+    }
 
     super.initState();
   }
@@ -48,6 +66,7 @@ class _UpDownAnimationState extends State<UpDownAnimation> with SingleTickerProv
   dispose() {
     _controller!.stop();
     _controller!.dispose();
+    _controller = null;
     super.dispose();
   }
 

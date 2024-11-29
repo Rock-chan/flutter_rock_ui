@@ -2,19 +2,22 @@ import 'package:flutter/material.dart';
 
 /// 从无到有动画
 class FadeOpacityAnimation extends StatefulWidget {
-  const FadeOpacityAnimation(
-      {super.key,
-      required this.child,
-      this.beginTween = 1.0,
-      this.endTween = 0.0,
-      this.duration = const Duration(milliseconds: 700),
-      this.startDuration = Duration.zero});
+  const FadeOpacityAnimation({super.key,
+    required this.child,
+    this.beginTween = 1.0,
+    this.endTween = 0.0,
+    this.duration = const Duration(milliseconds: 700),
+    this.startDuration = Duration.zero,
+    this.isRepeat = false,
+    this.isReverse = false});
 
   final Widget child;
   final double beginTween;
   final double endTween;
   final Duration duration;
   final Duration startDuration; // 间隔多久后开始
+  final bool isRepeat;
+  final bool isReverse;
 
   @override
   State<FadeOpacityAnimation> createState() => _FadeOpacityAnimationState();
@@ -39,7 +42,14 @@ class _FadeOpacityAnimationState extends State<FadeOpacityAnimation> with Single
 
     // 开始动画
     Future.delayed(widget.startDuration, () {
-      _circleAnimationController?.forward();
+      if (widget.isRepeat) {
+        if (_circleAnimationController != null) {
+          _circleAnimationController?.repeat(reverse: widget.isReverse);
+        }
+      }
+      if (_circleAnimationController != null) {
+        _circleAnimationController?.forward();
+      }
     });
 
     super.initState();
@@ -49,6 +59,7 @@ class _FadeOpacityAnimationState extends State<FadeOpacityAnimation> with Single
   dispose() {
     _circleAnimationController!.stop();
     _circleAnimationController?.dispose();
+    _circleAnimationController = null;
     super.dispose();
   }
 

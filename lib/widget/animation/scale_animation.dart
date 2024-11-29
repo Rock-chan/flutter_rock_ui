@@ -10,6 +10,7 @@ class ScaleAnimation extends StatefulWidget {
     this.beginTween = 0,
     this.endTween = 3,
     this.startDuration = Duration.zero,
+    this.reverse = false,
   });
 
   final Widget child;
@@ -18,6 +19,7 @@ class ScaleAnimation extends StatefulWidget {
   final double beginTween;
   final double endTween;
   final Duration startDuration;
+  final bool reverse;
 
   @override
   State<ScaleAnimation> createState() => _ScaleAnimationState();
@@ -41,7 +43,7 @@ class _ScaleAnimationState extends State<ScaleAnimation> with SingleTickerProvid
     Future.delayed(widget.startDuration, () {
       // 开始动画
       if (widget.isRepeat) {
-        _circleAnimationController?.repeat();
+        _circleAnimationController?.repeat(reverse: widget.reverse);
       } else {
         _circleAnimationController?.forward();
       }
