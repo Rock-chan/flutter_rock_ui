@@ -12,6 +12,7 @@ class UpDownAnimation extends StatefulWidget {
     this.shouldStart = true,
     this.reverse = true,
     this.repeat = true,
+    this.isHorizontal = false,
   });
 
   final Widget child;
@@ -22,6 +23,7 @@ class UpDownAnimation extends StatefulWidget {
   final bool shouldStart;
   final bool reverse;
   final bool repeat;
+  final bool isHorizontal;
 
   @override
   State<UpDownAnimation> createState() => _UpDownAnimationState();
@@ -75,7 +77,10 @@ class _UpDownAnimationState extends State<UpDownAnimation> with SingleTickerProv
     return AnimatedBuilder(
       animation: _animation!,
       builder: (context, child) {
-        return Transform.translate(offset: Offset(0, _animation!.value), child: widget.child);
+        return Transform.translate(
+          offset: widget.isHorizontal ? Offset(_animation!.value, 0) : Offset(0, _animation!.value),
+          child: widget.child,
+        );
       },
     );
   }
