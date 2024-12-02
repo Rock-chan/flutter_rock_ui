@@ -86,6 +86,7 @@ class PhotoViewPage extends StatelessWidget {
                 Container(
                   alignment: Alignment.center,
                   child: SwiperPhoto(
+                    height: 100,
                     imgUrlList: galleryNetworkItems,
                     isAssets: false,
                   ),

@@ -99,6 +99,8 @@ class _NormalDialogState extends State<NormalDialog> with SingleTickerProviderSt
                       duration: const Duration(milliseconds: 200),
                       beginTween: 0,
                       endTween: 1,
+                      isRepeat: true,
+                      isReverse: true,
                       child: gradientText("恭喜您", fontSize: 32.0),
                     ),
                   ),
@@ -731,6 +733,7 @@ class ShakeDialog extends StatefulWidget {
 class _ShakeDialogState extends State<ShakeDialog> with SingleTickerProviderStateMixin {
   AnimationController? _controller;
   Animation<double>? _animation;
+
   // final developController = Get.find<DevelopController>();
 
   int _cycleCount = 0; // 用来跟踪周期数
