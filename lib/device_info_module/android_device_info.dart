@@ -86,41 +86,6 @@ class AndroidDeviceInformation extends DeviceInfoStrategy {
   }
 
   @override
-  double getDisplayHeightInches() {
-    return androidDeviceInfo!.displayMetrics.heightInches;
-  }
-
-  @override
-  double getDisplayHeightPixels() {
-    return androidDeviceInfo!.displayMetrics.heightPx;
-  }
-
-  @override
-  double getDisplaySizeInches() {
-    return ((androidDeviceInfo!.displayMetrics.sizeInches * 10).roundToDouble() / 10);
-  }
-
-  @override
-  double getDisplayWidthInches() {
-    return androidDeviceInfo!.displayMetrics.widthInches;
-  }
-
-  @override
-  double getDisplayWidthPixels() {
-    return androidDeviceInfo!.displayMetrics.widthPx;
-  }
-
-  @override
-  double getDisplayXDpi() {
-    return androidDeviceInfo!.displayMetrics.xDpi;
-  }
-
-  @override
-  double getDisplayYDpi() {
-    return androidDeviceInfo!.displayMetrics.yDpi;
-  }
-
-  @override
   String getFingerprint() {
     return androidDeviceInfo!.fingerprint;
   }

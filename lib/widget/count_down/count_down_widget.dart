@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:wakelock/wakelock.dart';
+import 'package:wakelock_plus/wakelock_plus.dart';
 
 typedef BuildCountDownItemCallBack = Widget Function(BuildContext context, int day, int hour, int minute, int second);
 
@@ -47,7 +47,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   @override
   void dispose() {
     if (_countDownTimer != null && _countDownTimer!.isActive) _countDownTimer!.cancel();
-    Wakelock.toggle(enable: false);
+    WakelockPlus.toggle(enable: false);
     super.dispose();
   }
 
@@ -57,7 +57,7 @@ class _CountDownWidgetState extends State<CountDownWidget> {
   }
 
   initCountDown() {
-    Wakelock.enable();
+    WakelockPlus.enable();
     time = countDownTime! ~/ 1000;
     day = time ~/ 3600 ~/ 24;
     hour = time ~/ 3600 % 24;

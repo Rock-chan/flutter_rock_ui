@@ -35,35 +35,52 @@ abstract class DeviceInfoStrategy {
   /// for android
 
   String getVersionSecurityPatch();
+
   int getVersionSdk();
+
   String getVersionRelease();
+
   int getVersionPreviewSdk();
+
   String getVersionIncremental();
+
   String getVersionCodename();
+
   String getVersionBaseOS();
+
   String getBoard();
+
   String getBootloader();
+
   String getBrand();
+
   String getDevice();
+
   String getDisplay();
+
   String getFingerprint();
+
   String getHardware();
+
   String getHost();
+
   String getId();
+
   String getManufacturer();
+
   String getProduct();
+
   List<String> getSupported32BitAbis();
+
   List<String> getSupported64BitAbis();
+
   List<String> getSupportedAbis();
+
   String getTags();
+
   String getType();
+
   List<String> getSystemFeatures();
-  double getDisplaySizeInches();
-  double getDisplayWidthPixels();
-  double getDisplayWidthInches();
-  double getDisplayHeightPixels();
-  double getDisplayHeightInches();
-  double getDisplayXDpi();
-  double getDisplayYDpi();
+
   String getSerialNumber();
 }
