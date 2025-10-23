@@ -3,9 +3,11 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class CircleAnimation extends StatefulWidget {
-  const CircleAnimation({super.key, required this.child});
+  const CircleAnimation({super.key, required this.child, this.milliseconds = 5000});
 
   final Widget child;
+
+  final int milliseconds;
 
   @override
   CircleAnimationState createState() => CircleAnimationState();
@@ -18,7 +20,7 @@ class CircleAnimationState extends State<CircleAnimation> with SingleTickerProvi
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(milliseconds: 5000),
+      duration: Duration(milliseconds: widget.milliseconds),
       vsync: this,
     )..repeat(); // 动画重复
   }
