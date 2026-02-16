@@ -66,7 +66,7 @@ class MultiplePhotoWidget extends StatelessWidget {
                   );
                 },
                 width: width,
-                height: height,
+                fit: BoxFit.fitWidth,
               )
             : Image.network(
                 imgList[index],
@@ -77,7 +77,7 @@ class MultiplePhotoWidget extends StatelessWidget {
                   );
                 },
                 width: width,
-                height: height,
+                fit: BoxFit.fitWidth,
               ),
       ),
     );
