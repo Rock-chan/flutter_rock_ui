@@ -52,7 +52,7 @@ dependencies:
   # 震动
   vibration: ^1.7.5
   # 列表的加载更多插件
-  loading_more_list: 4.1.2
+  loading_more_list: ^7.1.0
 
 dev_dependencies:
   flutter_test:
